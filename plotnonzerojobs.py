@@ -5,7 +5,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 #%matplotlib inline
 matplotlib.style.use('ggplot')
-f=open("failedjobs", "r")
+f=open("times/0420", "r")
 contents = f.read()
 jobs=[]
 for line in contents.splitlines():
