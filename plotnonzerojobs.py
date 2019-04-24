@@ -11,6 +11,10 @@ jobs=[]
 for line in contents.splitlines():
     jobs.append(line.split()[0])
 
-num_bins = 60
-n, bins, patches = plt.hist(jobs, num_bins, facecolor='blue', alpha=0.5)
-plt.show()
+#num_bins = 60
+#n, bins, patches = plt.hist(jobs, num_bins, facecolor='blue', alpha=0.5)
+#plt.show()
+
+from collections import Counter
+counted = Counter(jobs)
+print(counted)
