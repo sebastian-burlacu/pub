@@ -4,6 +4,8 @@ Once you add a vdev to a pool, you cannot remove it, as the pool immediately suc
 
 ### END NOTES ###
 
+In these examples, vdb and vdc are 5G, and vdd and vde are 10G.
+
 #### create pool
 
 `zpool create <pool-name> <device>`
@@ -12,7 +14,7 @@ Once you add a vdev to a pool, you cannot remove it, as the pool immediately suc
 
 
 
-#### attach second device
+#### attach second device, thus creating a mirror
 
 `zpool attach <pool-name> <existing-device> <new-device>`
 
@@ -20,7 +22,7 @@ Once you add a vdev to a pool, you cannot remove it, as the pool immediately suc
 
 
 
-#### add second vdev mirror to existing pool
+#### add second vdev mirror to existing pool (make sure to use add as this adds more space to the pool)
 
 `zpool add <pool-name> mirror <first-new-device> <second-new-device>`
 
@@ -98,12 +100,12 @@ Once you add a vdev to a pool, you cannot remove it, as the pool immediately suc
 
 #### replacing both drives and expanding into the new bigger drives
 
-`zpool create testpool vdb`
-`zpool attach testpool vdb vdc`
-`zpool detach testpool vdb`
-`zpool attach testpool vdc vdd`
-`zpool detach testpool vdc`
-`zpool attach testpool vdd vde`
+`zpool create testpool vdb`  
+`zpool attach testpool vdb vdc`  
+`zpool detach testpool vdb`  
+`zpool attach testpool vdc vdd`  
+`zpool detach testpool vdc`  
+`zpool attach testpool vdd vde`  
 `zpool online -e testpool vdd vde`
 
 	# zpool status
@@ -131,4 +133,4 @@ Once you add a vdev to a pool, you cannot remove it, as the pool immediately suc
 	tmpfs           200M     0  200M   0% /run/user/1000
 	testpool        9.7G     0  9.7G   0% /testpool
 
-#### 
+#### using autoexpand property
