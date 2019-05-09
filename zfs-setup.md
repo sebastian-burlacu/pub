@@ -2,6 +2,11 @@
 
 Once you add a vdev to a pool, you cannot remove it, as the pool immediately sucks up that space and cannot shrink. You can detach a drive from a mirror vdev, destroying the mirror and leaving it as a disk vdev. You can then attach a different drive to that mirror and resilver onto it, then remove the first drive and replace it as well. Once both drives are replaced, you can expand into the new drive space.
 
+https://wiki.ubuntu.com/Kernel/Reference/ZFS
+https://blog.fosketts.net/2017/12/11/add-mirror-existing-zfs-drive/
+https://linuxhint.com/zfs-concepts-and-tutorial/
+https://jrs-s.net/2015/02/06/zfs-you-should-use-mirror-vdevs-not-raidz/
+
 ### END NOTES ###
 
 In these examples, vdb and vdc are 5G, and vdd and vde are 10G.
@@ -174,3 +179,12 @@ In these examples, vdb and vdc are 5G, and vdd and vde are 10G.
 	testpool        9.7G     0  9.7G   0% /testpool
 
 
+
+#### creating nfs/samba exports
+
+`apt install nfs-kernel-server`  
+
+Use these sites  
+https://vitux.com/install-nfs-server-and-client-on-ubuntu/  
+http://www.supermaru.com/2017/05/ubuntu-zfs-samba-share/  
+https://help.ubuntu.com/community/How%20to%20Create%20a%20Network%20Share%20Via%20Samba%20Via%20CLI%20%28Command-line%20interface/Linux%20Terminal%29%20-%20Uncomplicated%2C%20Simple%20and%20Brief%20Way%21
