@@ -1,34 +1,32 @@
-###### IMPORTANT NOTES ######
+### IMPORTANT NOTES ###
 
-Once you add a vdev to a pool, you cannot remove it, as the pool immediately sucks up that space and cannot shrink.
-You can detach a drive from a mirror vdev, destroying the mirror and leaving it as a disk vdev.
-However 
+Once you add a vdev to a pool, you cannot remove it, as the pool immediately sucks up that space and cannot shrink. You can detach a drive from a mirror vdev, destroying the mirror and leaving it as a disk vdev. You can then attach a different drive to that mirror and resilver onto it, then remove the first drive and replace it as well.
 
-###### END NOTES ######
+### END NOTES ###
 
-## create pool
+#### create pool
 
 `zpool create <pool-name> <device>`
 
- zpool create testpool /dev/vdb
+`zpool create testpool /dev/vdb`
 
 
 
-## attach second device
+#### attach second device
 
- zpool attach <pool-name> <existing-device> <new-device>
+`zpool attach <pool-name> <existing-device> <new-device>`
 
- zpool attach testpool vdb vdc
+`zpool attach testpool /dev/vdb /dev/vdc`
 
 
 
-## add second vdev mirror to existing pool
+#### add second vdev mirror to existing pool
 
-zpool add <pool-name> mirror <first-new-device> <second-new-device>
+`zpool add <pool-name> mirror <first-new-device> <second-new-device>`
 
-zpool add testpool mirror /dev/vdd /dev/vde
+`zpool add testpool mirror /dev/vdd /dev/vde`
 
-## end result:
+#### end result:
 
 	# zpool status
 	  pool: testpool
@@ -59,11 +57,11 @@ zpool add testpool mirror /dev/vdd /dev/vde
 	tmpfs           200M     0  200M   0% /run/user/1000
 	testpool         15G  128K   15G   1% /testpool
 
-## create filesystem
+#### create filesystem
 
-zfs create <pool-name>/<fs-name>
+`zfs create <pool-name>/<fs-name>`
 
-zfs create testpool/one
+`zfs create testpool/one`
 
 	# df -h
 	Filesystem      Size  Used Avail Use% Mounted on
@@ -78,11 +76,11 @@ zfs create testpool/one
 	testpool         15G     0   15G   0% /testpool
 	testpool/one     15G     0   15G   0% /testpool/one
 
-## filesystem will use all the space available to the pool unless you set a quota
+#### filesystem will use all the space available to the pool unless you set a quota
 
-zfs set quota=<N>G <pool-name>/<fs-name>
+`zfs set quota=<N>G <pool-name>/<fs-name>`
 
-zfs set quota=2G testpool/one
+`zfs set quota=2G testpool/one`
 
 	# df -h
 	Filesystem      Size  Used Avail Use% Mounted on
