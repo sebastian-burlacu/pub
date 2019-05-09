@@ -142,8 +142,8 @@ In these examples, vdb and vdc are 5G, and vdd and vde are 10G.
 	EXPAND
 	    on
 
-`zpool attach testpool vdb vdc`  
-`zpool detach testpool vdb`  
+`zpool attach testpool vdb vdc
+zpool detach testpool vdb`  
 `zpool attach testpool vdc vdd`  
 `zpool detach testpool vdc`  
 `zpool attach testpool vdd vde`  
