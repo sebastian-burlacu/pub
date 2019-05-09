@@ -8,7 +8,7 @@ However
 
 ## create pool
 
- zpool create <pool-name> <device>
+  zpool create <pool-name> <device>
 
  zpool create testpool /dev/vdb
 
