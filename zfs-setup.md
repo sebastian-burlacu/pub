@@ -8,17 +8,17 @@ However
 
 ## create pool
 
-zpool create <pool-name> <device>
+ zpool create <pool-name> <device>
 
-zpool create testpool /dev/vdb
+ zpool create testpool /dev/vdb
 
 
 
 ## attach second device
 
-zpool attach <pool-name> <existing-device> <new-device>
+ zpool attach <pool-name> <existing-device> <new-device>
 
-zpool attach testpool vdb vdc
+ zpool attach testpool vdb vdc
 
 
 
