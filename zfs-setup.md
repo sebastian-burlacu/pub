@@ -133,4 +133,44 @@ In these examples, vdb and vdc are 5G, and vdd and vde are 10G.
 	tmpfs           200M     0  200M   0% /run/user/1000
 	testpool        9.7G     0  9.7G   0% /testpool
 
-#### using autoexpand property
+#### using autoexpand property - removing the need to use 'online -e'
+
+`zpool create testpool vdb`  
+`zpool set autoexpand=on testpool`  
+
+	# zpool list testpool -o autoexpand
+	EXPAND
+	    on
+
+`zpool attach testpool vdb vdc`  
+`zpool detach testpool vdb`  
+`zpool attach testpool vdc vdd`  
+`zpool detach testpool vdc`  
+`zpool attach testpool vdd vde`  
+
+	# zpool status
+	  pool: testpool
+	 state: ONLINE
+	  scan: resilvered 88.5K in 0h0m with 0 errors on Thu May  9 18:30:30 2019
+	config:
+	
+		NAME        STATE     READ WRITE CKSUM
+		testpool    ONLINE       0     0     0
+		  mirror-0  ONLINE       0     0     0
+		    vdd     ONLINE       0     0     0
+		    vde     ONLINE       0     0     0
+	
+	errors: No known data errors
+	# df -h
+	Filesystem      Size  Used Avail Use% Mounted on
+	udev            985M     0  985M   0% /dev
+	tmpfs           200M  712K  199M   1% /run
+	/dev/vda1        20G  1.7G   18G   9% /
+	tmpfs           997M     0  997M   0% /dev/shm
+	tmpfs           5.0M     0  5.0M   0% /run/lock
+	tmpfs           997M     0  997M   0% /sys/fs/cgroup
+	/dev/vda15      105M  3.4M  102M   4% /boot/efi
+	tmpfs           200M     0  200M   0% /run/user/1000
+	testpool        9.7G     0  9.7G   0% /testpool
+
+
