@@ -106,11 +106,17 @@ In these examples, vdb and vdc are 5G, and vdd and vde are 10G.
 #### replacing both drives and expanding into the new bigger drives
 
 `zpool create testpool vdb`  
+wait for resilver to finish - verify via zpool status  
 `zpool attach testpool vdb vdc`  
+wait for resilver to finish - verify via zpool status  
 `zpool detach testpool vdb`  
+wait for resilver to finish - verify via zpool status  
 `zpool attach testpool vdc vdd`  
+wait for resilver to finish - verify via zpool status  
 `zpool detach testpool vdc`  
+wait for resilver to finish - verify via zpool status  
 `zpool attach testpool vdd vde`  
+wait for resilver to finish - verify via zpool status  
 `zpool online -e testpool vdd vde`
 
 	# zpool status
@@ -148,9 +154,13 @@ In these examples, vdb and vdc are 5G, and vdd and vde are 10G.
 	    on
 
 `zpool attach testpool vdb vdc`  
+wait for resilver to finish - verify via zpool status  
 `zpool detach testpool vdb`  
+wait for resilver to finish - verify via zpool status  
 `zpool attach testpool vdc vdd`  
+wait for resilver to finish - verify via zpool status  
 `zpool detach testpool vdc`  
+wait for resilver to finish - verify via zpool status  
 `zpool attach testpool vdd vde`  
 
 	# zpool status
