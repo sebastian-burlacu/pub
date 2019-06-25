@@ -2,9 +2,9 @@
 
 Once you add a vdev to a pool, you cannot remove it, as the pool immediately sucks up that space and cannot shrink. You can detach a drive from a mirror vdev, destroying the mirror and leaving it as a disk vdev. You can then attach a different drive to that mirror and resilver onto it, then remove the first drive and replace it as well. Once both drives are replaced, you can expand into the new drive space.
 
-https://wiki.ubuntu.com/Kernel/Reference/ZFS
-https://blog.fosketts.net/2017/12/11/add-mirror-existing-zfs-drive/
-https://linuxhint.com/zfs-concepts-and-tutorial/
+https://wiki.ubuntu.com/Kernel/Reference/ZFS  
+https://blog.fosketts.net/2017/12/11/add-mirror-existing-zfs-drive/  
+https://linuxhint.com/zfs-concepts-and-tutorial/  
 https://jrs-s.net/2015/02/06/zfs-you-should-use-mirror-vdevs-not-raidz/
 
 ### END NOTES ###
